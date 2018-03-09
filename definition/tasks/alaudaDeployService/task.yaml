@@ -1,0 +1,81 @@
+
+apiVersion: devops.alauda.io/v1alpha1
+kind: PipelineTaskTemplate
+metadata:
+  name: alaudaDeployService
+  annotations:
+    alauda.io/displayName.zh-CN: 更新服务
+    alauda.io/displayName.en: DeployService
+    alauda.io/descripton.zh-CN: 更新服务
+    alauda.io/descripton.en: DeployService
+    alauda.io/readme.zh-CN: 更新服务
+    alauda.io/readme.en: DeployService
+    alauda.io/version: 0.1
+    alauda.io/style.icon: 
+  labels:
+    catgory: CD
+spec:
+  engine: gotpl
+  body: |+
+    script{
+      timeout(time:{{.timeout}}, unit: 'SECONDS'){
+        alauda.withCluster("{{.containerInfo.clusterName}}", "{{.containerInfo.clusterName}}"){
+          alauda.service("{{.containerInfo.serviceName}}").
+          withContainer(name:"{{.containerInfo.containerName}}",
+            env: [
+              {{- range $i,$item := .env}}
+              {{- if ne $i 0 }},{{end}}
+              "{{$item.Name}}":"{{$item.Value}}"
+              {{- end}}
+            ]
+          ).
+          withImage("{{.image.regeistry}}/{{.image.repository}}:{{.imageTag}}").deploy()
+        }
+      }
+    }
+  arguments:
+    - name: containerInfo
+      schema:
+        type: alauda.io/newk8scontainermix
+      display:
+        type: alauda.io/newk8scontainermix
+        name:
+          zh-CN: ""
+          en: ""
+      required: true
+    - name: "image"
+      schema:
+        type: alauda.io/imagerepositorymix
+      display:
+        type: alauda.io/imagerepositorymix
+        name:
+          zh-CN: "更新使用的镜像"
+          en: "Use Image "
+      required: true
+    - name: "imageTag"
+      schema:
+        type: string
+      display:
+        type: alauda.io/imagetag
+        name:
+          zh-CN: "镜像版本"
+          en: "Image Tag"
+      required: true
+      default: latest
+    - name: env
+      schema:
+        type: alauda.io/k8senv
+      display:
+        type: alauda.io/k8senv
+        name:
+          zh-CN: "环境变量"
+          en: "environments"
+    - name: timeout
+      schema:
+        type: int
+      display:
+        type: int
+        name:
+          zh-CN: "超时时间（秒）"
+          en: "Timeout (s)"
+      required: true
