@@ -1,0 +1,59 @@
+
+apiVersion: devops.alauda.io/v1alpha1
+kind: PipelineTaskTemplate
+metadata:
+  name: clone
+  annotations:
+    alauda.io/displayName.zh-CN: 克隆代码
+    alauda.io/displayName.en: Clone
+    alauda.io/description.zh-CN: 克隆代码
+    alauda.io/description.en: Clone
+    alauda.io/readme.zh-CN: 克隆代码
+    alauda.io/readme.en: Clone
+    alauda.io/version: 0.1
+    alauda.io/style.icon: 
+  labels:
+    catgory: CI
+spec:
+  engine: gotpl
+  body: |+
+    script{
+        REPOSITORY_PATH = "{{.SCM.RepositoryPath}}"
+        {{if eq .SCM.Type "GIT" -}}
+        def scmVars = git branch: "{{.SCM.Branch}}", credentialsId: "{{.SCM.CredentialsID}}", url: "{{.SCM.RepositoryPath}}"
+
+        GIT_COMMIT = scmVars.GIT_COMMIT
+        GIT_BRANCH = scmVars.GIT_LOCAL_BRANCH
+        {{- end}}
+
+        {{- if eq .SCM.Type "SVN" -}}
+        def scmVars = checkout([
+          $class: "SubversionSCM",
+          additionalCredentials: [],
+          excludedCommitMessages: "",
+          excludedRegions: "",
+          excludedRevprop: "",
+          excludedUsers: "",
+          filterChangelog: false,
+          ignoreDirPropChanges: false,
+          includedRegions: "",
+          locations: [[
+            credentialsId: "{{.SCM.CredentialsID}}", depthOption: "infinity", ignoreExternalsOption: true, local: ".", remote: "{{.SCM.RepositoryPath}}"
+          ]],
+          quietOperation: true, workspaceUpdater: [$class: "UpdateUpdater"]
+        ])
+        SVN_REVISION = scmVars.SVN_REVISION
+
+        {{- end}}
+    }
+  arguments: # arguments
+    - name: "SCM" #用于模板中接收值
+      schema:
+        type: object
+      required: true
+      display:
+        type: alauda.io/scm
+        name: 
+          zh-CN: scm
+          en: scm
+
