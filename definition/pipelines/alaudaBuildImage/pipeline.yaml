@@ -6,8 +6,8 @@ metadata:
   annotations:
     alauda.io/displayName.zh-CN: 构建
     alauda.io/displayName.en: BuildImage
-    alauda.io/descripton.zh-CN: 克隆代码并构建镜像
-    alauda.io/descripton.en: Clone code and build docker image
+    alauda.io/description.zh-CN: 克隆代码并构建镜像
+    alauda.io/description.en: Clone code and build docker image
     alauda.io/readme.zh-CN: 克隆代码并构建镜像
     alauda.io/readme.en: Clone code and build docker image
     alauda.io/version: 0.1
@@ -16,6 +16,7 @@ metadata:
     catgory: CI
 spec:
   engine: graph
+  withSCM: true
   stages:
     - name: Clone
       tasks:
@@ -96,11 +97,11 @@ spec:
                 value: true
         - name: "ciImage"
           schema:
-            type: alauda.io/imagerepository
+            type: alauda.io/imagerepositorymix
           binding:
             - BuildImage.args.ciImage
           display:
-            type: alauda.io/imagerepository
+            type: alauda.io/imagerepositorymix
             name:
               zh-CN: "CI镜像"
               en: "CI Image"
@@ -173,11 +174,11 @@ spec:
       items:
         - name: "image"
           schema:
-            type: alauda.io/imagerepository
+            type: alauda.io/imagerepositorymix
           binding:
             - BuildImage.args.image
           display:
-            type: alauda.io/imagerepository
+            type: alauda.io/imagerepositorymix
             name:
               zh-CN: "镜像仓库"
               en: "Image Repository"

@@ -6,8 +6,8 @@ metadata:
   annotations:
     alauda.io/displayName.zh-CN: 克隆代码
     alauda.io/displayName.en: Clone
-    alauda.io/descripton.zh-CN: 克隆代码
-    alauda.io/descripton.en: Clone
+    alauda.io/description.zh-CN: 克隆代码
+    alauda.io/description.en: Clone
     alauda.io/readme.zh-CN: 克隆代码
     alauda.io/readme.en: Clone
     alauda.io/version: 0.1

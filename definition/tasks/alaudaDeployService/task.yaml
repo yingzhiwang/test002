@@ -6,8 +6,8 @@ metadata:
   annotations:
     alauda.io/displayName.zh-CN: 更新服务
     alauda.io/displayName.en: DeployService
-    alauda.io/descripton.zh-CN: 更新服务
-    alauda.io/descripton.en: DeployService
+    alauda.io/description.zh-CN: 更新服务
+    alauda.io/description.en: DeployService
     alauda.io/readme.zh-CN: 更新服务
     alauda.io/readme.en: DeployService
     alauda.io/version: 0.1
@@ -18,7 +18,7 @@ spec:
   engine: gotpl
   body: |+
     script{
-      timeout(time:{{.timeout}}, unit: 'SECONDS'){
+      timeout(time:{{.timeout}}, unit: "SECONDS"){
         alauda.withCluster("{{.containerInfo.clusterName}}", "{{.containerInfo.clusterName}}"){
           alauda.service("{{.containerInfo.serviceName}}").
           withContainer(name:"{{.containerInfo.containerName}}",

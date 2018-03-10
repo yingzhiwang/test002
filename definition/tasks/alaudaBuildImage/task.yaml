@@ -6,8 +6,8 @@ metadata:
   annotations:
     alauda.io/displayName.zh-CN: 构建
     alauda.io/displayName.en: BuildImage
-    alauda.io/descripton.zh-CN: 构建
-    alauda.io/descripton.en: BuildImage
+    alauda.io/description.zh-CN: 构建
+    alauda.io/description.en: BuildImage
     alauda.io/readme.zh-CN: 构建镜像
     alauda.io/readme.en: BuildImage
     alauda.io/version: 0.1
@@ -75,9 +75,9 @@ spec:
             value: false
     - name: "ciImage"
       schema:
-        type: alauda.io/imagerepository
+        type: alauda.io/imagerepositorymix
       display:
-        type: alauda.io/imagerepository
+        type: alauda.io/imagerepositorymix
         name:
           zh-CN: "CI镜像"
           en: "CI Image"
@@ -118,9 +118,9 @@ spec:
             value: true
     - name: "image"
       schema:
-        type: alauda.io/imagerepository
+        type: alauda.io/imagerepositorymix
       display:
-        type: alauda.io/imagerepository
+        type: alauda.io/imagerepositorymix
         name:
           zh-CN: "构建生成的镜像"
           en: "image"
