@@ -29,7 +29,7 @@ spec:
               {{- end}}
             ]
           ).
-          withImage("{{.image.regeistry}}/{{.image.repository}}:{{.imageTag}}").deploy()
+          withImage("{{.image.registry}}/{{.image.repository}}:{{.imageTag}}").deploy()
         }
       }
     }
@@ -40,8 +40,8 @@ spec:
       display:
         type: alauda.io/newk8scontainermix
         name:
-          zh-CN: ""
-          en: ""
+          zh-CN: "容器"
+          en: "container"
       required: true
     - name: "image"
       schema:
