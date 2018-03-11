@@ -10,7 +10,7 @@ metadata:
     alauda.io/description.en: DeployService
     alauda.io/readme.zh-CN: 更新服务
     alauda.io/readme.en: DeployService
-    alauda.io/version: 0.1
+    alauda.io/version: v0.1
     alauda.io/style.icon: 
   labels:
     catgory: CD
