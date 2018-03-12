@@ -19,17 +19,15 @@ spec:
   body: |+
     script{
       timeout(time:{{.timeout}}, unit: "SECONDS"){
-        alauda.withCluster("{{.containerInfo.clusterName}}", "{{.containerInfo.clusterName}}"){
-          alauda.service("{{.containerInfo.serviceName}}").
-          withContainer(name:"{{.containerInfo.containerName}}",
-            env: [
-              {{- range $i,$item := .env}}
-              {{- if ne $i 0 }},{{end}}
-              "{{$item.Name}}":"{{$item.Value}}"
-              {{- end}}
-            ]
-          ).
-          withImage("{{.image.registry}}/{{.image.repository}}:{{.imageTag}}").deploy()
+        alauda.withCluster("{{.containerInfo.clusterName}}", "{{.containerInfo.namespace}}"){
+          def serviceID = alauda.service("{{.containerInfo.serviceName}}").
+          withContainer("{{.containerInfo.containerName}}").
+          withImage("{{.image.registry}}/{{.image.repository}}:{{.imageTag}}").
+          withImageTag("{{.imageTag}}").
+          {{- range $i,$item := .env}}
+          withEnv("{{$item.Name}}", "{{$item.Value}}").
+          {{- end}}
+          deploy();
         }
       }
     }
