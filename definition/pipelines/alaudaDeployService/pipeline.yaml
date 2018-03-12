@@ -27,7 +27,7 @@ spec:
   arguments:
     - displayName:
         zh-CN: "基本信息"
-        en: "basic"
+        en: "Basic Info"
       items:
         - name: containerInfo
           schema:
@@ -38,7 +38,7 @@ spec:
             type: alauda.io/newk8scontainermix
             name:
               zh-CN: "容器"
-              en: "container"
+              en: "Container"
           required: true
         - name: image
           schema:
@@ -48,8 +48,8 @@ spec:
           display:
             type: alauda.io/imagerepositorymix
             name:
-              zh-CN: "更新使用的镜像"
-              en: "Use Image "
+              zh-CN: "更新使用的镜像仓库"
+              en: "Image repository to use"
           required: true
         - name: "imageTag"
           schema:
@@ -60,7 +60,7 @@ spec:
             type: alauda.io/imagetag
             name:
               zh-CN: "镜像版本"
-              en: "Image Tag"
+              en: "Image tag"
           required: true
           default: latest
         - name: env
@@ -72,7 +72,7 @@ spec:
             type: alauda.io/k8senv
             name:
               zh-CN: "环境变量"
-              en: "environments"
+              en: "Environment variables"
         - name: timeout
           schema:
             type: int
