@@ -44,7 +44,7 @@ spec:
               zh-CN: "Dockerfile路径"
               en: "Dockerfile's path"
           required: true
-          default: Dockerfile
+          default: ./
         - name: "contextDir"
           schema:
             type: string
@@ -83,9 +83,10 @@ spec:
           display:
             type: string
             name:
-              zh-CN: "alaudaci.yaml 所在目录"
+              zh-CN: "alaudaci.yaml 文件路径"
               en: "alaudaci.yml's path"
           required: false
+          default: ./alaudaci.yml
           relation:
             - action: hidden
               when:

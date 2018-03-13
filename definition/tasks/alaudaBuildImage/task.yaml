@@ -18,13 +18,24 @@ spec:
   engine: gotpl
   body: |+
     script{
-      def image = alauda.createBuild().
+      def image = alauda.build().
         setDockerfileLocation("{{.dockerfilePath}}").
         setContextPath("{{.contextDir}}").
-        withImage(url: "{{.ciImage.registry}}/{{.ciImage.repository}}", credentialsId: "{{.ciImageRegistryCredentialsId}}"){
-            {{.ciCommands}}
-        }.setBuildImageName("{{.image.registry}}/{{.image.repository}}:{{.imageTag}}").start()
-      image.withRegistry(credentialsId: "{{.imageRegistryCredentialsId}}", url: "{{.ciImage.registry}}/{{.ciImage.repository}}").push("{{.imageExtraTag}}")
+        setUseImageCache({{.useImageCache}}).
+        {{- if .useYaml}}
+        withYaml("{{.ciYamlFile}}").
+        {{- else}}
+        withCIImage("{{.ciImage.registry}}/{{.ciImage.repository}}:{{.ciImageTag}}", "{{.ciImageRegistryCredentialsId}}"){
+            sh """{{.ciCommands}}"""
+        }.
+        {{- end}}
+        setBuildImageName("{{.image.registry}}/{{.image.repository}}:{{.imageTag}}").
+        startBuild().
+        startBuildImage()
+      image.withRegistry([
+        credentialsId: "{{.imageRegistryCredentialsId}}",
+        url: "{{.ciImage.registry}}"
+      ]).push("{{.imageExtraTag}}")
     }
   arguments:
     - name: "dockerfilePath"
@@ -36,7 +47,7 @@ spec:
           zh-CN: "Dockerfile路径"
           en: "path of Dockerfile"
       required: true
-      default: Dockerfile
+      default: ./
     - name: "contextDir"
       schema:
         type: string
@@ -65,9 +76,10 @@ spec:
       display:
         type: string
         name:
-          zh-CN: "alaudaci.yml 所在目录"
+          zh-CN: "alaudaci.yml 文件路径"
           en: "path of alaudaci.yaml"
       required: false
+      default: ./alaudaci.yml
       relation:
         - action: hidden
           when:
