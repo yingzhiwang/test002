@@ -1,0 +1,86 @@
+
+apiVersion: devops.alauda.io/v1alpha1
+kind: PipelineTemplate
+metadata:
+  name: alaudaDeployService
+  annotations:
+    alauda.io/displayName.zh-CN: 更新服务
+    alauda.io/displayName.en: DeployService
+    alauda.io/description.zh-CN: 更新服务
+    alauda.io/description.en: Deploy Service
+    alauda.io/readme.zh-CN: 更新服务
+    alauda.io/readme.en: Deploy Service
+    alauda.io/version: v0.1
+    alauda.io/style.icon: 
+  labels:
+    catgory: CD
+spec:
+  engine: graph
+  withSCM: false
+  stages:
+    - name: DeployService
+      tasks:
+        - name: DeployService
+          type: public/alaudaDeployService
+          options:
+            timeout: 3600
+  arguments:
+    - displayName:
+        zh-CN: "基本信息"
+        en: "Basic Info"
+      items:
+        - name: containerInfo
+          schema:
+            type: alauda.io/newk8scontainermix
+          binding:
+            - DeployService.args.containerInfo
+          display:
+            type: alauda.io/newk8scontainermix
+            name:
+              zh-CN: "容器"
+              en: "Container"
+          required: true
+        - name: image
+          schema:
+            type: alauda.io/imagerepositorymix
+          binding:
+            - DeployService.args.image
+          display:
+            type: alauda.io/imagerepositorymix
+            name:
+              zh-CN: "更新使用的镜像仓库"
+              en: "Image repository to use"
+          required: true
+        - name: "imageTag"
+          schema:
+            type: string
+          binding:
+            - DeployService.args.imageTag
+          display:
+            type: alauda.io/imagetag
+            name:
+              zh-CN: "镜像版本"
+              en: "Image tag"
+          required: true
+          default: latest
+        - name: env
+          schema:
+            type: alauda.io/k8senv
+          binding:
+            - DeployService.args.env
+          display:
+            type: alauda.io/k8senv
+            name:
+              zh-CN: "环境变量"
+              en: "Environment variables"
+        - name: timeout
+          schema:
+            type: int
+          binding:
+            - DeployService.args.timeout
+          display:
+            type: int
+            name:
+              zh-CN: "超时时间（秒）"
+              en: "Timeout (s)"
+          required: true
