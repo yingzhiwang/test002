@@ -24,6 +24,10 @@ spec:
 
         GIT_COMMIT = scmVars.GIT_COMMIT
         GIT_BRANCH = scmVars.GIT_LOCAL_BRANCH
+        env.CODE_COMMIT = GIT_COMMIT
+        env.GIT_COMMIT = GIT_COMMIT
+        env.CODE_BRANCH = GIT_BRANCH
+        env.GIT_BRANCH = GIT_BRANCH
         {{- end}}
 
         {{- if eq .SCM.Type "SVN" -}}
@@ -43,6 +47,8 @@ spec:
           quietOperation: true, workspaceUpdater: [$class: "UpdateUpdater"]
         ])
         SVN_REVISION = scmVars.SVN_REVISION
+        env.SVN_REVISION = SVN_REVISION
+        env.CODE_COMMIT = SVN_REVISION
 
         {{- end}}
     }
