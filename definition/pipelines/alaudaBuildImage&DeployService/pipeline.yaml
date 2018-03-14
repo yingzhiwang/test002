@@ -93,6 +93,8 @@ spec:
               en: "alaudaci.yml's path"
           required: false
           default: ./alaudaci.yml
+          validation:
+            pattern: .*\.yml$
           relation:
             - action: hidden
               when:
@@ -161,7 +163,7 @@ spec:
           binding:
             - BuildImage.args.ciCommands
           display:
-            type: shellscirpts
+            type: shellscripts
             name:
               zh-CN: "自定义命令"
               en: "CI commands"

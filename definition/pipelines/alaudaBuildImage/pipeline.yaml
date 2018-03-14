@@ -96,6 +96,8 @@ spec:
               when:
                 name: useYaml
                 value: true
+          validation:
+            pattern: .*\.yml$
         - name: "ciImage"
           schema:
             type: alauda.io/imagerepositorymix
@@ -155,7 +157,7 @@ spec:
           binding:
             - BuildImage.args.ciCommands
           display:
-            type: shellscirpts
+            type: shellscripts
             name:
               zh-CN: "自定义命令"
               en: "CI commands"

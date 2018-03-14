@@ -26,7 +26,7 @@ spec:
         withYaml("{{.ciYamlFile}}").
         {{- else}}
         withCIImage("{{.ciImage.registry}}/{{.ciImage.repository}}:{{.ciImageTag}}", "{{.ciImageRegistryCredentialsId}}"){
-            sh """{{.ciCommands}}"""
+            sh '''{{.ciCommands}}'''
         }.
         {{- end}}
         setImage("{{.image.registry}}/{{.image.repository}}:{{.imageTag}}").
@@ -80,6 +80,8 @@ spec:
           en: "path of alaudaci.yaml"
       required: false
       default: ./alaudaci.yml
+      validation:
+        pattern: .*\.yml$
       relation:
         - action: hidden
           when:
@@ -118,7 +120,7 @@ spec:
       schema:
         type: string
       display:
-        type: shellscirpts
+        type: shellscripts
         name:
           zh-CN: "自定义命令"
           en: "ci commands"
