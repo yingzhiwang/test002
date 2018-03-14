@@ -29,12 +29,12 @@ spec:
             sh """{{.ciCommands}}"""
         }.
         {{- end}}
-        setBuildImageName("{{.image.registry}}/{{.image.repository}}:{{.imageTag}}").
+        setImage("{{.image.registry}}/{{.image.repository}}:{{.imageTag}}").
         startBuild().
         startBuildImage()
       image.withRegistry([
         credentialsId: "{{.imageRegistryCredentialsId}}",
-        url: "{{.ciImage.registry}}"
+        url: "{{.image.registry}}"
       ]).push("{{.imageExtraTag}}")
     }
   arguments:
@@ -179,7 +179,7 @@ spec:
         name:
           zh-CN: "registry凭据"
           en: "registry credential"
-      required: true
+      required: false
     - name: imageRegistryCredentialsId
       schema:
         type: string
@@ -189,5 +189,5 @@ spec:
         name:
           zh-CN: "registry凭据"
           en: "registry credential"
-      required: true
+      required: false
 
