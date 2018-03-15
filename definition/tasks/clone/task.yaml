@@ -20,7 +20,18 @@ spec:
     script{
         REPOSITORY_PATH = "{{.SCM.RepositoryPath}}"
         {{if eq .SCM.Type "GIT" -}}
-        def scmVars = git branch: "{{.SCM.Branch}}", credentialsId: "{{.SCM.CredentialsID}}", url: "{{.SCM.RepositoryPath}}"
+        def scmVars = checkout([
+          $class: 'GitSCM',
+          branches: [[name: "{{.SCM.Branch}}"]],
+          extensions: [[
+            $class: 'SubmoduleOption',
+            recursiveSubmodules: true,
+            reference: '',
+          ]],
+          userRemoteConfigs: [[
+            credentialsId: "{{.SCM.CredentialsID}}", url: '{{.SCM.RepositoryPath}}'
+          ]]
+        ])
 
         GIT_COMMIT = scmVars.GIT_COMMIT
         GIT_BRANCH = scmVars.GIT_LOCAL_BRANCH

@@ -27,6 +27,8 @@ spec:
           {{- range $i,$item := .env}}
           withEnv("{{$item.Name}}", "{{$item.Value}}").
           {{- end}}
+          withCommand("{{.command}}").
+          withArgs("{{.args}}").
           deploy();
         }
       }
@@ -39,8 +41,26 @@ spec:
         type: alauda.io/newk8scontainermix
         name:
           zh-CN: "容器"
-          en: "container"
+          en: "Container"
       required: true
+    - name: command
+      schema:
+        type: string
+      display:
+        type: string
+        name:
+          zh-CN: "接入点"
+          en: "Entrypoint"
+      required: false
+    - name: args
+      schema:
+        type: string
+      display:
+        type: string
+        name:
+          zh-CN: "执行命令"
+          en: "Run Command"
+      required: false
     - name: "image"
       schema:
         type: alauda.io/imagerepositorymix
