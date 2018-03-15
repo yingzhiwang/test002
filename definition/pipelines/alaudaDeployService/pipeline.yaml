@@ -5,11 +5,11 @@ metadata:
   name: alaudaDeployService
   annotations:
     alauda.io/displayName.zh-CN: 更新服务
-    alauda.io/displayName.en: DeployService
+    alauda.io/displayName.en: Update service
     alauda.io/description.zh-CN: 更新服务
-    alauda.io/description.en: Deploy Service
+    alauda.io/description.en: Update a service
     alauda.io/readme.zh-CN: 更新服务
-    alauda.io/readme.en: Deploy Service
+    alauda.io/readme.en: Update a service
     alauda.io/version: v0.1
     alauda.io/style.icon: 
   labels:
@@ -40,6 +40,28 @@ spec:
               zh-CN: "容器"
               en: "Container"
           required: true
+        - name: command
+          schema:
+            type: string
+          binding:
+            - DeployService.args.command
+          display:
+            type: string
+            name:
+              zh-CN: "接入点"
+              en: "Entrypoint"
+          required: false
+        - name: args
+          schema:
+            type: string
+          binding:
+            - DeployService.args.args
+          display:
+            type: string
+            name:
+              zh-CN: "执行命令"
+              en: "Run Command"
+          required: false
         - name: image
           schema:
             type: alauda.io/imagerepositorymix
