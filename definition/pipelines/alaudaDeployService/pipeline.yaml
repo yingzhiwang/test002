@@ -40,28 +40,6 @@ spec:
               zh-CN: "容器"
               en: "Container"
           required: true
-        - name: command
-          schema:
-            type: string
-          binding:
-            - DeployService.args.command
-          display:
-            type: string
-            name:
-              zh-CN: "接入点"
-              en: "Entrypoint"
-          required: false
-        - name: args
-          schema:
-            type: string
-          binding:
-            - DeployService.args.args
-          display:
-            type: string
-            name:
-              zh-CN: "执行命令"
-              en: "Run Command"
-          required: false
         - name: image
           schema:
             type: alauda.io/imagerepositorymix
@@ -72,6 +50,9 @@ spec:
             name:
               zh-CN: "更新使用的镜像仓库"
               en: "Image repository to use"
+            description:
+              zh-CN: 更新使用的镜像仓库,如果为空, 则使用原有服务的镜像。
+              en: ""
           required: false
         - name: "imageTag"
           schema:
@@ -85,6 +66,34 @@ spec:
               en: "Image tag"
           required: true
           default: latest
+        - name: command
+          schema:
+            type: string
+          binding:
+            - DeployService.args.command
+          display:
+            type: string
+            name:
+              zh-CN: "接入点"
+              en: "Entrypoint"
+            description:
+              zh-CN: 若未修改镜像, 则默认使用原有镜像的接入点，若修改了服务使用的镜像，则需指定接入点
+              en: ""
+          required: false
+        - name: args
+          schema:
+            type: string
+          binding:
+            - DeployService.args.args
+          display:
+            type: string
+            name:
+              zh-CN: "执行命令"
+              en: "Run Command"
+            description:
+              zh-CN: 若未修改镜像, 则默认使用原有镜像的执行命令，若修改了服务使用的镜像，则需指定执行命令
+              en: ""
+          required: false
         - name: env
           schema:
             type: alauda.io/k8senv
