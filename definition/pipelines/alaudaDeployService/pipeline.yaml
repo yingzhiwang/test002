@@ -72,7 +72,7 @@ spec:
             name:
               zh-CN: "更新使用的镜像仓库"
               en: "Image repository to use"
-          required: true
+          required: false
         - name: "imageTag"
           schema:
             type: string
