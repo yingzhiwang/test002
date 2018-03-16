@@ -22,7 +22,9 @@ spec:
         alauda.withCluster("{{.containerInfo.clusterName}}", "{{.containerInfo.namespace}}"){
           def serviceID = alauda.service("{{.containerInfo.serviceName}}").
           withContainer("{{.containerInfo.containerName}}").
+          {{- if .image}}
           withImage("{{.image.registry}}/{{.image.repository}}:{{.imageTag}}").
+          {{- end}}
           withImageTag("{{.imageTag}}").
           {{- range $i,$item := .env}}
           withEnv("{{$item.Name}}", "{{$item.Value}}").
@@ -68,8 +70,8 @@ spec:
         type: alauda.io/imagerepositorymix
         name:
           zh-CN: "更新使用的镜像"
-          en: "Use Image "
-      required: true
+          en: "Use Image"
+      required: false
     - name: "imageTag"
       schema:
         type: string
