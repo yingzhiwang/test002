@@ -17,6 +17,7 @@ metadata:
 spec:
   engine: gotpl
   body: |+
+    deleteDir()
     script{
         REPOSITORY_PATH = "{{.SCM.RepositoryPath}}"
         {{if eq .SCM.Type "GIT" -}}
