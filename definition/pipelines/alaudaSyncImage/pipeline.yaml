@@ -1,0 +1,28 @@
+
+apiVersion: devops.alauda.io/v1alpha1
+kind: PipelineTemplate
+metadata:
+  name: alaudaSyncImage
+  annotations:
+    alauda.io/displayName.zh-CN: 同步镜像
+    alauda.io/displayName.en: Sync image
+    alauda.io/description.zh-CN: 将镜像同步到另外一个或多个docker registry
+    alauda.io/description.en: Sync image to other docker registries
+    alauda.io/readme.zh-CN: 将镜像同步到另外一个或多个docker registry
+    alauda.io/readme.en: Sync image to other docker registries
+    alauda.io/version: v0.1
+    alauda.io/style.icon: sync-image
+  labels:
+    phase: incubator
+spec:
+  engine: graph
+  withSCM: false
+  stages:
+    - name: SyncImage
+      tasks:
+        - name: SyncImage
+          type: public/alaudaSyncImage
+          options:
+            timeout: 3600
+  arguments:
+

@@ -16,7 +16,7 @@ pipeline{
   stages{
     stage("InstallJenkinsfileXT"){
         steps{
-            git branch:"feature/add-lint-tool", url:"https://bitbucket.org/mathildetech/jenkinsfilext", credentialsId: "chengjingtao-bitbucket"
+            git branch:"master", url:"https://bitbucket.org/mathildetech/jenkinsfilext", credentialsId: "chengjingtao-bitbucket"
             sh 'mkdir -p ${GOPATH}/src/bitbucket.org/mathildetech/jenkinsfilext'
             sh 'rm -r ${GOPATH}/src/bitbucket.org/mathildetech/jenkinsfilext || true'
             sh 'ls -la && cp -r ./ ${GOPATH}/src/bitbucket.org/mathildetech/jenkinsfilext/'
