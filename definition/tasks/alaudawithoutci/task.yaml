@@ -21,6 +21,7 @@ spec:
         setDockerfileLocation("{{.dockerfilePath}}").
         setContextPath("{{.contextDir}}").
         setUseImageCache({{.useImageCache}}).
+        {{ -if .useCI}}
         {{- if .useYaml}}
         withYaml("{{.ciYamlFile}}").
         {{- else}}
@@ -56,7 +57,19 @@ spec:
           zh-CN: "构建路径"
           en: "path of build"
       required: true
-      default: ./
+      default: ./ 
+    - name: "useCI"
+      schema:
+        type: boolean
+      display:
+        type: boolean
+        name:
+          zh-CN: "使用 CI功能"
+          en: "Use CI function"
+        description:
+          zh-CN: "若使用CI功能"
+          en: "wyztest001"
+      required: true        
     - name: "useYaml"
       schema:
         type: boolean
@@ -69,6 +82,11 @@ spec:
           zh-CN: 若使用自定义YAML镜像，则会使用您在代码仓库的alaudaci.yml中指定的镜像作为持续集成的运行环境。
           en: If enabled with use yaml image build, we will use the alaudaci.yml file under your code repository as the environment configuration for CI.
       required: false
+      relation:
+        - action: hidden
+          when:
+            name: useCI
+            value: false
     - name: "ciYamlFile"
       schema:
         type: string
@@ -86,6 +104,10 @@ spec:
           when:
             name: useYaml
             value: false
+        - action: hidden
+          when:
+            name: useCI
+            value: false
     - name: "ciImage"
       schema:
         type: alauda.io/imagerepositorymix
@@ -99,6 +121,10 @@ spec:
         - action: hidden
           when:
             name: useYaml
+            value: true
+        - action: hidden
+          when:
+            name: useCI
             value: true
     - name: "ciImageTag"
       schema:
@@ -115,6 +141,10 @@ spec:
           when:
             name: useYaml
             value: true
+        - action: hidden
+          when:
+            name: useCI
+            value: true
     - name: "ciCommands"
       schema:
         type: string
@@ -128,6 +158,10 @@ spec:
         - action: hidden
           when:
             name: useYaml
+            value: true
+        - action: hidden
+          when:
+            name: useCI
             value: true
     - name: "image"
       schema:
