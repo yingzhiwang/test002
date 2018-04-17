@@ -72,6 +72,7 @@ spec:
         description:
           zh-CN: "若使用CI功能"
           en: "wyztest001"
+      default: ture
       required: true        
     - name: "useYaml"
       schema:
