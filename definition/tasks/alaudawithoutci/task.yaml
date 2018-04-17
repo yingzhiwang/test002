@@ -29,6 +29,7 @@ spec:
             sh '''{{.ciCommands}}'''
         }.
         {{- end}}
+        {{- end}}
         setImage("{{.image.registry}}/{{.image.repository}}:{{.imageTag}}").
         startBuild().
         startBuildImage()
