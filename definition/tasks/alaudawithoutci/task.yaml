@@ -31,7 +31,9 @@ spec:
         {{- end}}
         {{- end}}
         setImage("{{.image.registry}}/{{.image.repository}}:{{.imageTag}}").
+        {{ -if .useCI}}
         startBuild().
+        {{- end}}
         startBuildImage()
       image.withRegistry([
         credentialsId: "{{.imageRegistryCredentialsId}}",
@@ -59,7 +61,7 @@ spec:
           en: "path of build"
       required: true
       default: ./ 
-    - name: "useCI"
+    - name: "CIEnbale"
       schema:
         type: boolean
       display:
