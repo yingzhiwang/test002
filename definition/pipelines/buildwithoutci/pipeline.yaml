@@ -13,6 +13,12 @@ metadata:
     alauda.io/style.icon: build
   labels:
     catgory: CI
+    test1: 1
+    test2: 2
+    test3: 3
+    phase: incubator
+    test4: 4
+    test5: 5
 spec:
   engine: graph
   withSCM: true
