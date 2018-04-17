@@ -17,7 +17,7 @@ metadata:
     target: frontend
     fix: fix v1
     wide: china
-  spec:
+spec:
     engine: graph
     withSCM: true
     stages:
@@ -57,8 +57,8 @@ metadata:
               - BuildImage.args.dockerfilePath
             display:
               type: string
-            name:
-              zh-CN: "Dockerfile路径"
-              en: "Dockerfile's path"
+              name:
+                zh-CN: "Dockerfile路径"
+                en: "Dockerfile's path"
             required: true
             default: ./
