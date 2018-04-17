@@ -126,4 +126,4 @@ spec:
               zh-CN: "开启镜像缓存"
               en: "Use image cache"
           default: true
-required: true
+          required: true
