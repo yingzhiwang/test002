@@ -21,7 +21,7 @@ spec:
         setDockerfileLocation("{{.dockerfilePath}}").
         setContextPath("{{.contextDir}}").
         setUseImageCache({{.useImageCache}}).
-        {{ -if .useCI}}
+        {{ -if .CIEnbale}}
         {{- if .useYaml}}
         withYaml("{{.ciYamlFile}}").
         {{- else}}
@@ -31,7 +31,7 @@ spec:
         {{- end}}
         {{- end}}
         setImage("{{.image.registry}}/{{.image.repository}}:{{.imageTag}}").
-        {{ -if .useCI}}
+        {{ -if .CIEnbale}}
         startBuild().
         {{- end}}
         startBuildImage()
@@ -67,11 +67,11 @@ spec:
       display:
         type: boolean
         name:
-          zh-CN: "使用 CI功能"
+          zh-CN: "使用CI功能"
           en: "Use CI function"
         description:
-          zh-CN: "若使用CI功能"
-          en: "wyztest001"
+          zh-CN: "使用CI功能"
+          en: "use CI function"
       default: ture
       required: true        
     - name: "useYaml"
@@ -89,7 +89,7 @@ spec:
       relation:
         - action: hidden
           when:
-            name: useCI
+            name: CIEnbale
             value: false
     - name: "ciYamlFile"
       schema:
@@ -110,7 +110,7 @@ spec:
             value: false
         - action: hidden
           when:
-            name: useCI
+            name: CIEnbale
             value: false
     - name: "ciImage"
       schema:
@@ -128,7 +128,7 @@ spec:
             value: true
         - action: hidden
           when:
-            name: useCI
+            name: CIEnbale
             value: true
     - name: "ciImageTag"
       schema:
@@ -147,7 +147,7 @@ spec:
             value: true
         - action: hidden
           when:
-            name: useCI
+            name: CIEnbale
             value: true
     - name: "ciCommands"
       schema:
@@ -165,7 +165,7 @@ spec:
             value: true
         - action: hidden
           when:
-            name: useCI
+            name: CIEnbale
             value: true
     - name: "image"
       schema:
