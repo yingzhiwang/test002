@@ -3,7 +3,7 @@ kind: PipelineTemplate
 metadata:
   name: wyzbuild001
   annotations:
-    alauda.io/displayName.zh-CN: 构建
+    alauda.io/displayName.zh-CN: wyzbuild001
     alauda.io/displayName.en: Build docker image
     alauda.io/description.zh-CN: 克隆代码并构建镜像
     alauda.io/description.en: Clone code and builds a docker image
