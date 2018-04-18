@@ -38,6 +38,18 @@ spec:
         zh-CN: "基本信息"
         en: "Basic Info"
       items:
+        - name: "CIEnbale"
+          schema:
+            type: boolean
+          binding:
+            - BuildImage.args.CIEnbale
+          display:
+            type: boolean
+            name:
+              zh-CN: "CI开关"
+              en: "CI enable"
+          required: false
+          default: true
         - name: "dockerfilePath"
           schema:
             type: string
