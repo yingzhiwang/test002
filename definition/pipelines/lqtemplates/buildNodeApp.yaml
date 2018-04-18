@@ -22,7 +22,7 @@ spec:
     withSCM: true
     stages:
       - name: Clone
-        task:
+        tasks:
           - name: Clone
             type: public/clone
       - name: BuildImage
