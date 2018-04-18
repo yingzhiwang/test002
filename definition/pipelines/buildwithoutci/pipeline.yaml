@@ -1,15 +1,15 @@
 apiVersion: devops.alauda.io/v1alpha1
 kind: PipelineTemplate
 metadata:
-  name: alaudaBuildImage
+  name: buildwithoutCI
   annotations:
-    alauda.io/displayName.zh-CN: 构建
+    alauda.io/displayName.zh-CN: 构建无CI
     alauda.io/displayName.en: Build docker image
     alauda.io/description.zh-CN: 克隆代码并构建镜像
     alauda.io/description.en: Clone code and builds a docker image
     alauda.io/readme.zh-CN: 克隆代码并构建镜像
     alauda.io/readme.en: Clone code and builds a docker image
-    alauda.io/version: v0.1
+    alauda.io/version: v0.16
     alauda.io/style.icon: build
   labels:
     catgory: CI
@@ -30,7 +30,7 @@ spec:
     - name: BuildImage
       tasks:
         - name: BuildImage
-          type: public/alaudaBuildImage
+          type: testorg001/alaudawithoutCI
           options:
             timeout: 3600
   arguments:
@@ -38,6 +38,18 @@ spec:
         zh-CN: "基本信息"
         en: "Basic Info"
       items:
+        - name: "CIEnbale"
+          schema:
+            type: boolean
+          binding:
+            - BuildImage.args.CIEnbale
+          display:
+            type: boolean
+            name:
+              zh-CN: "CI开关"
+              en: "CI enable"
+          required: false
+          default: true
         - name: "dockerfilePath"
           schema:
             type: string

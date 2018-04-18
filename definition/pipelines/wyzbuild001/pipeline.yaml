@@ -1,15 +1,15 @@
 apiVersion: devops.alauda.io/v1alpha1
 kind: PipelineTemplate
 metadata:
-  name: alaudaBuildImage
+  name: wyzbuild001
   annotations:
-    alauda.io/displayName.zh-CN: 构建
+    alauda.io/displayName.zh-CN: wyzbuild001
     alauda.io/displayName.en: Build docker image
     alauda.io/description.zh-CN: 克隆代码并构建镜像
     alauda.io/description.en: Clone code and builds a docker image
     alauda.io/readme.zh-CN: 克隆代码并构建镜像
     alauda.io/readme.en: Clone code and builds a docker image
-    alauda.io/version: v0.1
+    alauda.io/version: v0.11
     alauda.io/style.icon: build
   labels:
     catgory: CI
