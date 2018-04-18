@@ -1,7 +1,7 @@
 apiVersion: devops.alauda.io/v1alpha1
 kind: PipelineTaskTemplate
 metadata:
-  name: alaudaBuildImage
+  name: alaudawithoutCI
   annotations:
     alauda.io/displayName.zh-CN: 构建
     alauda.io/displayName.en: BuildImage
