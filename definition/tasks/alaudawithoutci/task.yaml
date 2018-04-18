@@ -21,7 +21,7 @@ spec:
         setDockerfileLocation("{{.dockerfilePath}}").
         setContextPath("{{.contextDir}}").
         setUseImageCache({{.useImageCache}}).
-        {{ -if .CIEnbale}}
+        {{- if .CIEnbale}}
         {{- if .useYaml}}
         withYaml("{{.ciYamlFile}}").
         {{- else}}
@@ -31,7 +31,7 @@ spec:
         {{- end}}
         {{- end}}
         setImage("{{.image.registry}}/{{.image.repository}}:{{.imageTag}}").
-        {{ -if .CIEnbale}}
+        {{- if .CIEnbale}}
         startBuild().
         {{- end}}
         startBuildImage()
