@@ -72,7 +72,7 @@ spec:
         description:
           zh-CN: "使用CI功能"
           en: "use CI function"
-      default: ture
+      default: true
       required: true        
     - name: "useYaml"
       schema:
