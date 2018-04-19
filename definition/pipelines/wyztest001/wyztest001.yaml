@@ -9,7 +9,7 @@ metadata:
     alauda.io/description.en: Build NodeApp
     alauda.io/readme.zh-CN: Nodejs
     alauda.io/readme.en: Nodejs
-    alauda.io/version: v0.5
+    alauda.io/version: v0.6
   labels:
     catgory: CI
     platform: Nodejs
@@ -54,6 +54,14 @@ spec:
             options:
               timeout: 3600
           - name: sixthPush
+            type: public/push
+            options:
+              timeout: 3600
+          - name: seventhPush
+            type: public/push
+            options:
+              timeout: 3600 
+          - name: eighthPush
             type: public/push
             options:
               timeout: 3600               
