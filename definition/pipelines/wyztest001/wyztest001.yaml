@@ -9,7 +9,7 @@ metadata:
     alauda.io/description.en: Build NodeApp
     alauda.io/readme.zh-CN: Nodejs
     alauda.io/readme.en: Nodejs
-    alauda.io/version: v0.6
+    alauda.io/version: v0.7
   labels:
     catgory: CI
     platform: Nodejs
@@ -68,7 +68,7 @@ spec:
       - name: test
         tasks:
           - name: test
-            type: testorg001/test
+            type: test
             options:
               timeout: 3600
       - name: deploy
