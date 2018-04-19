@@ -48,13 +48,13 @@ spec:
       - name: test
         tasks:
           - name: test
-            type: test
+            type: testorg001/test
             options:
               timeout: 3600
       - name: deploy
         tasks:
           - name: deploy
-            type: deploy
+            type: testorg001/deploy
             options:
               timeout: 3600              
     arguments:
