@@ -23,28 +23,40 @@ spec:
     stages:
       - name: Clone
         tasks:
-          - name: Clone000000000000000000102012
+          - name: Clone0
             type: public/clone
       - name: BuildImage
         tasks:
-          - name: BuildImageqeqweqweqweqweqweqweeqweqweqe
+          - name: BuildImage
             type: public/alaudaBuildImage
             options:
               timeout: 3600
       - name: PushImage
         tasks:
-          - name: firstPush00000000000001
+          - name: firstPush
             type: public/push
             options:
               timeout: 3600
-          - name: secondPush00000000000001
+          - name: secondPush
             type: public/push
             options:
               timeout: 3600
-          - name: thirdPush00000000000001
+          - name: thirdPush
             type: public/push
             options:
               timeout: 3600
+      - name: test
+        tasks:
+          - name: test
+            type: test
+            options:
+              timeout: 3600
+      - name: deploy
+        tasks:
+          - name: deploy
+            type: deploy
+            options:
+              timeout: 3600              
     arguments:
       - displayName:
           zh-CN: "基本信息"
