@@ -1,7 +1,7 @@
 apiVersion: devops.alauda.io/v1alpha1
 kind: PipelineTemplate
 metadata:
-  name: buildNodeApp
+  name: buildNodeApp1
   annotations:
     alauda.io/displayName.zh-CN: 构建NodeApp
     alauda.io/displayName.en: Build NodeApp
@@ -9,7 +9,7 @@ metadata:
     alauda.io/description.en: Build NodeApp
     alauda.io/readme.zh-CN: Nodejs
     alauda.io/readme.en: Nodejs
-    alauda.io/version: v0.8
+    alauda.io/version: v0.9
   labels:
     catgory: CI
     platform: Nodejs
