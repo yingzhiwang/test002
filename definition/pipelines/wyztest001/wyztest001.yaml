@@ -9,7 +9,7 @@ metadata:
     alauda.io/description.en: Build NodeApp
     alauda.io/readme.zh-CN: Nodejs
     alauda.io/readme.en: Nodejs
-    alauda.io/version: v0.10
+    alauda.io/version: v0.10098763532423234244231212313
   labels:
     catgory: CI
     platform: Nodejs
